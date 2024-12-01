@@ -1,0 +1,37 @@
+{% extends 'blog/backoffice/base.html '%}
+
+{% block main %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 mt-4 ">
+                <h1>Tableau de bord</h1>
+                <a href="{% url 'categorie_create' %}" class="btn btn-primary">Ajout d'une categorie</a><hr>
+                <div class="card mb-4">
+                    <div class="card-header">
+                    <h2>listes des categories</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <th>Nom</th>
+                                <th>action</th>
+                            </thead>
+                            <tbody>
+                                {% for categorie in categorie %}
+                                 <tr>
+                                    <td>{{ categorie.nom}}</td>
+                                    <td>
+                                        <a href="{% url 'categorie_update' categorie.id %}" class="btn btn-warning">Update</a>
+                                        <a href="{% url 'categorie_delete' categorie.id %}" class="btn btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

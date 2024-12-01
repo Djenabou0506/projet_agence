@@ -1,0 +1,46 @@
+{% extends 'Blog/backoffice/base.html' %}
+
+
+{% block main %}
+
+<div class="container">
+  
+    <div class="row">
+        <div class="col-12  mt-4">
+            <h1>Tableau de bord</h1>
+            <a href="{% url 'tags_create' %}" class="btn btn-primary">Ajout d'un tag</a>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h2>listes des tags</h2>
+                </div>
+                <div class="card-boby">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Code couleur</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for tag in tags %}
+                        <tr>
+                            <td>{{tag.nom}}</td>
+                            <td>{{tag.codecouleur}}</td>
+                            <td>
+                                <a href="{% url 'tags_update' tag.id %}" class="btn btn-warning">Update</a>
+                                <a href="{% url 'tags_delete' tag.id %}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                       
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

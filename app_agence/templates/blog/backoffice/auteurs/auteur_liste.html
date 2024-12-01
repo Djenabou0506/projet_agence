@@ -1,0 +1,44 @@
+{% extends 'blog/backoffice/base.html' %}
+
+{% block main %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-4">
+            <h1>Tableau de bord</h1>
+            <a href="{% url 'auteur_create' %}" class="btn btn-primary">Ajouter un auteur</a><hr>
+            <div class="card mb-4">
+               
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                  <h3>  Liste des auteurs</h3>
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nom complet</th>
+                                <th>Email</th>
+                                <th>Adresse</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for auteur in auteurs %}
+                            <tr>
+                                <td>{{auteur.nomcomplet}}</td>
+                                <td>{{auteur.email}}</td>
+                                <td>{{auteur.adresse}}</td>
+                                <td>
+                                    <a href="{% url 'auteur_update' auteur.id %}" class="btn btn-warning">Update</a>
+                                    <a href="{% url 'auteur_delete' auteur.id %}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

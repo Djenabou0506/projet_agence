@@ -1,0 +1,50 @@
+{% extends 'blog/backoffice/base.html' %}
+
+{% block main %}
+    <div class="container">
+        <div class="row"> 
+            <div class="col-12 mt-4">
+                <h1>Tableau de bord</h1>
+                <a href="{% url 'article_create' %}" class="btn btn-primary">Ajout d'un article</a><hr>
+                <div class="card">
+                    <div class="card-header">
+                        <h2> Listes des articles </h2>
+                    </div>
+                        <div class="card-body">
+                            <table class="table table-bordered table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Titre</th>
+                                        <th>Contenu</th>
+                                        <th>Date publication</th>
+                                        <th>Image</th>
+                                        <th>Auteur</th>
+                                        <th>Categorie</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for article in article %}
+                                    <tr>
+                                        <td>{{article.titre}}</td>
+                                        <td>{{article.contenu}}</td>
+                                        <td>{{article.date_publication}}</td>
+                                        <td><a href="#"> {% if article.image %} <img width="50" src="{{article.image.url}}"  alt=""> {% endif %} </a></td>
+                                        <td>{{article.auteur}}</td>
+                                        <td>{{article.Categorie}}</td>
+                                        <td>
+                                            <a href="{% url 'article_update' article.id %}" class="btn btn-warning">Update</a>
+                                            <a href="{% url 'article_delete' article.id %}" class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
